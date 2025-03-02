@@ -7,7 +7,8 @@ private:
     long long int _num;
 
 public:
-    // Constructor
+    // Once the Compiler encounters a User-Defined-Constructor, it skips auto-generating
+    // the Default-Constructor
     INTEGER(long long int num)
         : _num{num} {}
 
@@ -31,9 +32,6 @@ public:
     std::string to_roman();
     std::string to_boolean();
 };
-
-INTEGER x{4};
-INTEGER y{4.5};
 
 /*
 
