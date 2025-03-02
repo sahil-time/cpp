@@ -1,4 +1,8 @@
+#ifdef GITHUB_ASSERT
 #include <libassert/assert.hpp>
+#else
+#include <cassert>
+#endif
 
 #include "number.hpp"
 
@@ -57,8 +61,12 @@ bool INTEGER::is_palindrome() {
         algo2_result = true;
     }
 
+#ifdef GITHUB_ASSERT
     // Compare both results - should be the same
     DEBUG_ASSERT(algo1_result == algo2_result);
+#else
+    assert(algo1_result == algo2_result);
+#endif
 
     return algo1_result;
 }
