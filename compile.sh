@@ -63,10 +63,9 @@ function build_personal_libs {
         -O0 \
         -Wall -Wextra -Werror \
         -lz \
-        -L./github_libs/cpptrace/build/lib -lcpptrace -lzstd -ldwarf \
-        -I./github_libs/libassert/include -I./github_libs/cpptrace/include \
-        -L./github_libs/libassert/build -lassert \
-        -shared -fPIC number.cpp -o personal_libs/libnumber.so
+        -L./github_libs/cpptrace/build/lib -lcpptrace -lzstd -ldwarf -I./github_libs/cpptrace/include \
+        -L./github_libs/libassert/build -lassert -I./github_libs/libassert/include \
+        -shared -fPIC libs/number.cpp -I./libs -o personal_libs/libnumber.so
 }
 
 # START COMPILATION PROCESS
@@ -82,11 +81,11 @@ clang++ -std=c++17 \
     -DQLEN=100 \
     -O0 \
     -Wall -Wextra -Werror \
-    -L./personal_libs -lnumber \
     -lz \
-    -L./github_libs/cpptrace/build/lib -lcpptrace -lzstd -ldwarf \
-    -I./github_libs/libassert/include -I./github_libs/cpptrace/include \
+    -L./github_libs/cpptrace/build/lib -lcpptrace -lzstd -ldwarf -I./github_libs/cpptrace/include \
+    -L./github_libs/libassert/build -lassert -I./github_libs/libassert/include \
     -L./github_libs/libassert/build -lassert \
+    -L./personal_libs -lnumber -I./libs \
     $1
 
 # RUN EXECUTABLE

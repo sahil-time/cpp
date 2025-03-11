@@ -25,6 +25,8 @@
  * THEREFORE:
  *  - EMPTY QUEUE INVARIANT: '_cp == _pp' [ Stop DEQUEUE ]
  *  - FULL QUEUE INVARIANT: '_pp == _cp - 1' [ STOP ENQUEUE ]
+ *
+ * NOTE: NOT THREAD SAFE. But safe for SINGLE PRODUCER & SINGLE CONSUMER
  */
 template <typename T>
 class lockfreeq {
