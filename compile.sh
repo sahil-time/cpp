@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $# -eq 0 ]]; then
+  echo "ERROR: Provide name of the 'main' file"
+  exit 1 # Exit with an error code
+fi
+
 echo "[COMPILE_LOG] ------------------------------------------"
 
 # CLEANUP FUNCTIONS
@@ -74,6 +79,7 @@ build_personal_libs
 echo "[COMPILE_LOG] Building 'main.cpp'..."
 clang++ -std=c++17 \
     -DGITHUB_ASSERT \
+    -DQLEN=100 \
     -O0 \
     -Wall -Wextra -Werror \
     -L./personal_libs -lnumber \

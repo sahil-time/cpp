@@ -5,7 +5,6 @@
 class INTEGER {
 private:
     long long int _num;
-
 public:
     // Once the Compiler encounters a User-Defined-Constructor, it skips auto-generating
     // the Default-Constructor
@@ -22,7 +21,6 @@ public:
     bool is_armstrong();
     bool is_square();
     bool is_cube();
-
     long long int next_prime();
     long long int prev_prime();
     double sqrt();
@@ -44,8 +42,10 @@ All the above are the same...pretty much!
 
 However, the 3. does TYPE CHECKING!!
 
-REF: https://ianyepan.github.io/posts/cpp-uniform-initialization/
-     https://herbsutter.com/2013/05/09/gotw-1-solution/
+REF:
+    https://ianyepan.github.io/posts/cpp-uniform-initialization/
+    https://herbsutter.com/2013/05/09/gotw-1-solution/
+    https://mikelui.io/2019/01/03/seriously-bonkers.html
 
 “C++’s most vexing parse,” because the standard resolves the parsing ambiguity by saying: “if it can be a function declaration, it is.”
 */

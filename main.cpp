@@ -8,6 +8,7 @@
 #endif
 
 #include "number.hpp"
+#include "lockfreeq.hpp"
 
 int main(int argc, char* argv[]) {
 #ifdef GITHUB_ASSERT
@@ -25,6 +26,6 @@ int main(int argc, char* argv[]) {
     INTEGER* num = new INTEGER{std::stoi(argv[1])};
     std::cout << "  Number is: " << num->get_num() << std::endl;
     std::cout << "    Is Palindrome: " << num->is_palindrome() << std::endl;
+
     return 0;
 }
-
