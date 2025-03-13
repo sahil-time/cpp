@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 #ifdef GITHUB_ASSERT
 #include <libassert/assert.hpp>
@@ -9,6 +10,22 @@
 
 #include "number.hpp"
 #include "lockfreeq.hpp"
+
+static void test_references() {
+    std::vector<std::string> all_caps {"CAPS", "caps"};
+    for(auto str : all_caps) {
+        str = "CAPS"; // If 'str' was a *, below ASSERT would have passed
+    }
+    for(auto str : all_caps) {
+        // DEBUG_ASSERT(str == "CAPS", "ERROR: Not caps");
+    }
+    for(auto& str: all_caps) {
+        str = "CAPS";
+    }
+    for(auto str: all_caps) {
+        DEBUG_ASSERT(str == "CAPS", "ERROR: Not caps");
+    }
+}
 
 int main(int argc, char* argv[]) {
 #ifdef GITHUB_ASSERT
@@ -27,5 +44,15 @@ int main(int argc, char* argv[]) {
     std::cout << "  Number is: " << num->get_num() << std::endl;
     std::cout << "    Is Palindrome: " << num->is_palindrome() << std::endl;
 
+    // TESTING REFERENCES
+    test_references();
+
     return 0;
 }
+
+
+/*
+- References CANNOT be made to point to a different variable
+- They MUST be initialized to a real variable when declared
+- References do NOT take memory
+*/
