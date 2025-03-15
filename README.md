@@ -17,4 +17,6 @@
 > 1. *Running on several nodes that are connected by a network*
 > 2. *Characterized by Partial Failure*
 >
-> *Failure is endemic to the Distributed System, but Partial Failure*
+> *Failure is endemic to the Distributed System*
+>
+> *Peter Alvaro says "Distributed Systems = Partial Failure + Unbounded Latency*
