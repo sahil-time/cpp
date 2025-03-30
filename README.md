@@ -19,4 +19,4 @@
 >
 > *Failure is endemic to the Distributed System*
 >
-> *Peter Alvaro says "Distributed Systems = Partial Failure + Unbounded Latency*
+> *Peter Alvaro says "Distributed Systems = Partial Failure + Unbounded Latency"*

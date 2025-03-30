@@ -1,5 +1,7 @@
 a.out
 *.so
 *.gch
+*.swp
+*.dSYM
 staged/
 thirdparty/

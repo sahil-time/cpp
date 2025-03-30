@@ -1,3 +1,5 @@
+#pragma once
+
 #include <optional>
 
 /* INVARIANTS: '_cp <= _pp' i.e. '_cp' will ALWAYS be less than or = to '_pp'
@@ -28,6 +30,7 @@
  *
  * NOTE: NOT THREAD SAFE. But safe for SINGLE PRODUCER & SINGLE CONSUMER
  */
+#define QLEN 10
 template <typename T>
 class lockfreeq {
 private:

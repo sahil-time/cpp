@@ -53,26 +53,32 @@ function clone_and_build_thirdparty_libs {
             make install
             cd ../../
 
+            echo "[COMPILE_LOG] - Cloning 'nlohmann/json.hpp'..."
+            git clone https://github.com/nlohmann/json.git
+
             cd ../
             break
         fi
     done
 
-    echo "[COMPILE_LOG] Staging Thirdparty libs..."
+    echo "[COMPILE_LOG] Staging Thirdparty libs & headers..."
     cp -f thirdparty/libassert/build/libassert.a staged/libs/
     cp -f thirdparty/cpptrace/build/lib/libzstd.a staged/libs/
     cp -f thirdparty/cpptrace/build/lib/libdwarf.a staged/libs/
     cp -f thirdparty/cpptrace/build/lib/libcpptrace.a staged/libs/
+    cp -f thirdparty/json/single_include/nlohmann/json.hpp staged/hdrs/
+
 }
 
-# PERSONAL BUILT LIBS [ STORE IN "staged/libs" ]
+# PERSONAL BUILT LIBS/BINARIES [ STORE IN "staged/libs" ]
 function build_personal_libs {
-    echo "[COMPILE_LOG] Building & Staging Personal libs..."
+    echo "[COMPILE_LOG] Building & Staging Personal libs/binaries..."
 
     if [[ "$1" == 1 ]]; then
         echo "[COMPILE_LOG]  - Building 'number.cpp'..."
         clang++ -std=c++17 \
             -DGITHUB_ASSERT \
+            -g \
             -O0 \
             -Wall -Wextra -Werror \
             -lz \
@@ -91,6 +97,10 @@ function build_personal_libs {
     # STAGE ALL REQUIRED HEADERS
     echo "[COMPILE_LOG]  - Staging headers from 'include' to 'staged/hdrs' ..."
     cp -f include/number.hpp staged/hdrs/.
+    cp -f include/assert.hpp staged/hdrs/.
+    cp -f include/packet.hpp staged/hdrs/.
+    cp -f include/cable.hpp staged/hdrs/.
+    cp -f include/router.hpp staged/hdrs/.
     cp -f include/lockfreeq.hpp staged/hdrs/.
 }
 
@@ -119,7 +129,7 @@ cleanup_main
 echo "[COMPILE_LOG] Building 'main.cpp'..."
 clang++ -std=c++17 \
     -DGITHUB_ASSERT \
-    -DQLEN=100 \
+    -g \
     -O0 \
     -Wall -Wextra -Werror \
     -lz \
